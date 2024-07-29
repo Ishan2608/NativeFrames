@@ -1,8 +1,8 @@
 import React from 'react'
+import { useState } from 'react'
 import { Text, View, Image, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link, Redirect, router } from 'expo-router'
-import { useState } from 'react'
 import { createUser } from '../../lib/appwrite';
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'

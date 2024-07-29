@@ -1,7 +1,8 @@
+import React from 'react'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { useGlobalContext } from '../../context/GlobalProvider'
-import React from 'react'
+import { Redirect } from 'expo-router'
 
 const AuthLayout = () => {
 

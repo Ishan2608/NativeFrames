@@ -35,25 +35,25 @@ const TabsLayout = () => {
             <Tabs.Screen name="home" options={{
                 title: "Home", headerShown: true,
                 tabBarIcon: ({color, focused})=>{
-                    return <MaterialIcons name="home" size={24} color={focused ? color : "white"} />
+                    return <MaterialIcons name="home" size={28} color={focused ? color : "white"} />
                 }
             }}/>
             <Tabs.Screen name="bookmark" options={{
                 title: "Bookmark", headerShown: true,
                 tabBarIcon: ({color, focused}) => {
-                    return <MaterialIcons name="book" size={24} color={focused ? color : "white"} />
+                    return <MaterialIcons name="book" size={28} color={focused ? color : "white"} />
                 }
             }}/>
             <Tabs.Screen name="create" options={{
                 title: "Create", headerShown: true,
                 tabBarIcon: ({color, focused}) => {
-                    return <MaterialIcons name="video-library" size={24} color={focused ? color : "white"} />
+                    return <MaterialIcons name="video-library" size={28} color={focused ? color : "white"} />
                 }
             }}/>
             <Tabs.Screen name="profile" options={{
                 title: "Profile", headerShown: true,
                 tabBarIcon: ({color, focused}) => {
-                    return <MaterialIcons name="person" size={24} color={focused ? color : "white"} />
+                    return <MaterialIcons name="person" size={28} color={focused ? color : "white"} />
                 }
             }}/>
         </Tabs>
