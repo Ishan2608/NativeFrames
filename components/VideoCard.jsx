@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { Video, ResizeMode } from 'expo-av';
 import { MaterialIcons } from '@expo/vector-icons';
 
 const VideoCard = ( {video: {title, thumbnail, video}, creator: { username, avatar }} ) => {
@@ -11,7 +12,11 @@ const VideoCard = ( {video: {title, thumbnail, video}, creator: { username, avat
             <View className="justify-center items-center flex-row flex-1">
 
                 <View className="border border-secondary rounded-lg justify-center items-center p-0.5  w-[48px] h-[46px]">
-                    <Image source={{uri:avatar}} className="w-full h-full rounded-lg" resizeMode='cover'/>
+                    <Image 
+                        source={{uri:avatar}} 
+                        className="w-full h-full rounded-lg" 
+                        resizeMode='cover'    
+                    />
                 </View>
 
                 <View className="justify-center flex-1 ml-3 gap-y-1">
@@ -26,7 +31,18 @@ const VideoCard = ( {video: {title, thumbnail, video}, creator: { username, avat
         </View>
 
         {play ? (
-            <Text> Playing </Text>
+            <Video
+                source={{ uri: video }}
+                className="w-full h-60 rounded-xl mt-3"
+                resizeMode={ResizeMode.CONTAIN}
+                useNativeControls
+                shouldPlay
+                onPlaybackStatusUpdate={(status) => {
+                    if (status.didJustFinish) {
+                    setPlay(false);
+                    }
+                }}
+            />
         ) : (
             <TouchableOpacity 
                 activeOpacity={0.7}

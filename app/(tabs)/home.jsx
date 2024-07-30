@@ -1,13 +1,14 @@
-import { Alert, FlatList, Image, RefreshControl, Text, View } from 'react-native'
-import { useEffect, useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import React from 'react'
+import { useState } from 'react'
+import { FlatList, Image, RefreshControl, Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { getAllPosts, latestPosts } from '../../lib/appwrite'
 import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
-import { getAllPosts, latestPosts } from '../../lib/appwrite'
 import useAppWrite from '../../lib/useAppWrite'
 import VideoCard from '../../components/VideoCard'
+
 
 const Home = () => {
   const {data:posts, refetch} = useAppWrite(getAllPosts);
@@ -25,10 +26,15 @@ const Home = () => {
     <SafeAreaView className="bg-primary px-4 flex-1">
       <FlatList
         data={ posts }
-        // data={ [] }
-        keyExtractor={ (item) => item.id }
+        keyExtractor={ (item) => item.$id }
         renderItem={ ( {item} ) => (
-          <VideoCard vide={item} />
+          <VideoCard
+            title={item.title}
+            thumbnail={item.thumbnail}
+            video={item.video}
+            creator={item.creator.username}
+            avatar={item.creator.avatar}
+          />
         )}
         ListHeaderComponent={ () => (
           <View className="my-2 space-y-6">

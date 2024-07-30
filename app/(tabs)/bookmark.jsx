@@ -1,15 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import React from 'react'
+import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Bookmark = () => {
   return (
-    <SafeAreaView>
-      <Text>Welcome to the Bookmark Page</Text>
+    <SafeAreaView className="px-4 my-6 bg-primary h-full">
+      <Text className="text-2xl text-white">Bookmark</Text>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Bookmark
-
-const styles = StyleSheet.create({})
+export default Bookmark;
