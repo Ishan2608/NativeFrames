@@ -1,28 +1,34 @@
-import { FlatList, Image, RefreshControl, Text, View } from 'react-native'
-import { useState } from 'react'
+import { Alert, FlatList, Image, RefreshControl, Text, View } from 'react-native'
+import { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import React from 'react'
 import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
+import { getAllPosts, latestPosts } from '../../lib/appwrite'
+import useAppWrite from '../../lib/useAppWrite'
+import VideoCard from '../../components/VideoCard'
 
 const Home = () => {
-
-  const [refreshing, setRefreshing] = useState(false)
+  const {data:posts, refetch} = useAppWrite(getAllPosts);
+  const {data:latest} = useAppWrite(latestPosts);
+  const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
     setRefreshing(true);
-    // re call videos -> if any new video appeared
+    await refetch();
     setRefreshing(false);
   }
+
+
   return (
     <SafeAreaView className="bg-primary px-4 flex-1">
       <FlatList
-        data={ [ {id:1}, {id:2}, {id:3} ] }
+        data={ posts }
         // data={ [] }
         keyExtractor={ (item) => item.id }
         renderItem={ ( {item} ) => (
-          <Text className="text-3xl text-white">  {item.id} </Text>
+          <VideoCard vide={item} />
         )}
         ListHeaderComponent={ () => (
           <View className="my-2 space-y-6">
@@ -49,11 +55,12 @@ const Home = () => {
                 Latest Videos
               </Text>
 
-              <Trending posts={ [{id:1}, {id:2}, {id:3}] ?? [] } />
+              <Trending posts={latest ?? [] } />
 
             </View>
           </View>
         )}
+
         ListEmptyComponent={()=>(
           <EmptyState 
             title="No Videos Found"
