@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { FlatList, Image, RefreshControl, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { getAllPosts, latestPosts } from '../../lib/appwrite'
+import { getAllPosts, getLatestPosts } from '../../lib/appwrite'
 import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
@@ -12,7 +12,7 @@ import VideoCard from '../../components/VideoCard'
 
 const Home = () => {
   const {data:posts, refetch} = useAppWrite(getAllPosts);
-  const {data:latest} = useAppWrite(latestPosts);
+  const {data:latest} = useAppWrite(getLatestPosts);
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
