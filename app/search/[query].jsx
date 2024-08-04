@@ -1,8 +1,19 @@
-import { View, Text } from "react-native";
+// Native Components
+import { View, Text, FlatList } from "react-native";
 import React, { useEffect } from "react";
-import { useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+// Routing Function
+import { useLocalSearchParams } from "expo-router";
+
+// Backend Functions
 import { searchPosts } from "../../lib/appwrite";
+import useAppWrite from "../../lib/useAppWrite";
+
+// Custom Components
+import EmptyState from "../../components/EmptyState";
+import SearchInput from "../../components/SearchInput";
+import VideoCard from "../../components/VideoCard";
 
 const Search = () => {
   const { query } = useLocalSearchParams();

@@ -1,12 +1,16 @@
-import React from 'react'
-import { useState } from 'react'
+// Native Components
+import React, {useState} from 'react'
 import { FlatList, Image, RefreshControl, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+
+// Backend Functions
+import useAppWrite from '../../lib/useAppWrite'
 import { getAllPosts, getLatestPosts } from '../../lib/appwrite'
+
+// Custom Components
 import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
-import useAppWrite from '../../lib/useAppWrite'
 import VideoCard from '../../components/VideoCard'
 
 

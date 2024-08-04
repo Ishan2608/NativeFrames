@@ -1,12 +1,17 @@
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native'
+// Native Components
 import React, { useState } from 'react'
+import { View, TextInput, TouchableOpacity, Alert } from 'react-native'
+
+// Icons
 import { MaterialIcons } from '@expo/vector-icons';
+
+// Routing Functions
 import { usePathname, router } from 'expo-router';
 
-const SearchInput = ({placeholder, handleChangeText}) => {
+const SearchInput = ({initialQuery}) => {
 
     const pathName = usePathname();
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState(initialQuery || "");
 
     return (
         <View className="border-2 border-black-500 w-full h-16 px-4 bg-black-100 rounded-md focus:border-secondary items-center flex-row space-x-4">
