@@ -6,7 +6,9 @@ import { searchPosts } from "../../lib/appwrite";
 
 const Search = () => {
   const { query } = useLocalSearchParams();
-  const { data: posts, refetch } = useAppWrite(searchPosts(query));
+  const { data: posts, refetch } = useAppWrite( 
+    () => searchPosts(query)
+  );
 
   useEffect(() => {
     refetch();
@@ -29,10 +31,10 @@ const Search = () => {
         ListHeaderComponent={() => (
           <>
             <View className="flex my-6 px-4">
-              <Text className="font-pmedium text-gray-100 text-sm">
+              <Text className=" text-gray-100 text-sm">
                 Search Results
               </Text>
-              <Text className="text-2xl font-psemibold text-white mt-1">
+              <Text className="text-2xl text-white mt-1">
                 {query}
               </Text>
 
