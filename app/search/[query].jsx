@@ -8,7 +8,7 @@ import { useLocalSearchParams } from "expo-router";
 
 // Backend Functions
 import { searchPosts } from "../../lib/appwrite";
-import useAppWrite from "../../lib/useAppwrite";
+import useAppWrite from "../../lib/useAppWrite";
 
 // Custom Components
 import EmptyState from "../../components/EmptyState";

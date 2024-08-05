@@ -2,6 +2,7 @@
 import React, {useState} from 'react'
 import { FlatList, Image, RefreshControl, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useGlobalContext } from '../../context/GlobalProvider'
 
 // Backend Functions
 import useAppWrite from '../../lib/useAppWrite'
@@ -15,6 +16,9 @@ import VideoCard from '../../components/VideoCard'
 
 
 const Home = () => {
+
+  const {user} = useGlobalContext();
+
   const {data:posts, refetch} = useAppWrite(getAllPosts);
   const {data:latest} = useAppWrite(getLatestPosts);
   const [refreshing, setRefreshing] = useState(false);
@@ -45,7 +49,7 @@ const Home = () => {
             <View className="justify-between items-start flex-row mb-6">
               <View>
                 <Text className="text-sm text-gray-100"> Welcome back </Text>
-                <Text className="text-2xl text-white"> NativeFrames </Text>
+                <Text className="text-2xl text-white"> {user.username} </Text>
               </View>
 
               <View className="mt-1.5">

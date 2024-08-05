@@ -1,17 +1,17 @@
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Image, FlatList, TouchableOpacity } from "react-native";
+import { MaterialIcons } from '@expo/vector-icons';
 
-import { icons } from "../../constants";
-import useAppwrite from "../../lib/useAppwrite";
+import useAppWrite from "../../lib/useAppWrite";
 import { getUserPosts, logout } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
 import { EmptyState, InfoBox, VideoCard } from "../../components";
 
 const Profile = () => {
   const { user, setUser, setIsLoggedIn } = useGlobalContext();
-  const { data: posts } = useAppwrite(() => getUserPosts(user.$id));
-
+  const { data: posts } = useAppWrite(() => getUserPosts(user.$id));
+  if (!posts) {posts = []}
   const signOut = async () => {
     await logout();
     setUser(null);
@@ -46,11 +46,7 @@ const Profile = () => {
               onPress={signOut}
               className="flex w-full items-end mb-10"
             >
-              <Image
-                source={icons.logout}
-                resizeMode="contain"
-                className="w-6 h-6"
-              />
+              <MaterialIcons name="logout"/>
             </TouchableOpacity>
 
             <View className="w-16 h-16 border border-secondary rounded-lg flex justify-center items-center">
